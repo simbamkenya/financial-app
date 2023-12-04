@@ -1,17 +1,17 @@
 async function drawChart(){
-    const data = await fetch('https://cloud.iexapis.com/stable/stock/BAC/intraday-prices?token=pk_a1f08a9c3a4b4527aeb4fa8b80c9b58f&chartLast=20')
+    const data = await fetch('https://gist.githubusercontent.com/prionkor/a39ad55e9b33546ffbaa/raw/f8979893270b3180fedbdb70b603af56fbff7960/ohlc-data.json')
     .then(res => res.json())
     .then(data => {
         return data.slice(0, 18)
     })
 
-    console.log(data)
+    console.log('o', data[0])
 
-    // const dateParse = d3.timeParse("%Y-%m-%d")
-    const dateParse = d3.timeParse("%H:%M")
+    const dateParse = d3.timeParse("%Y-%m-%d")
+    // const dateParse = d3.timeParse("%H:%M")
     
     //Data accessor 
-    const timeAccessor = d => dateParse(d.minute)
+    const timeAccessor = d => dateParse(d.date)
     console.log(timeAccessor(data[0]))
     
     // .replace(":","");
